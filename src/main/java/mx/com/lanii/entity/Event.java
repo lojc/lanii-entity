@@ -1,5 +1,7 @@
 package mx.com.lanii.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -16,21 +18,24 @@ public class Event implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(columnDefinition = "BINARY(16)")
 	private String id;
 
 	private String address;
 
 	@Column(name="can_send_email")
-	private byte canSendEmail;
+	private boolean canSendEmail;
 
 	@Column(name="can_send_ingress_pass")
-	private byte canSendIngressPass;
+	private boolean canSendIngressPass;
 
 	@Column(name="can_send_sms")
-	private byte canSendSms;
+	private boolean canSendSms;
 
 	@Column(name="can_send_whatsapp")
-	private byte canSendWhatsapp;
+	private boolean canSendWhatsapp;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
@@ -62,7 +67,7 @@ public class Event implements Serializable {
 	@Column(name="reschedule_date")
 	private Date rescheduleDate;
 
-	private byte status;
+	private boolean status;
 
 	private String title;
 
@@ -108,35 +113,35 @@ public class Event implements Serializable {
 		this.address = address;
 	}
 
-	public byte getCanSendEmail() {
+	public boolean getCanSendEmail() {
 		return this.canSendEmail;
 	}
 
-	public void setCanSendEmail(byte canSendEmail) {
+	public void setCanSendEmail(boolean canSendEmail) {
 		this.canSendEmail = canSendEmail;
 	}
 
-	public byte getCanSendIngressPass() {
+	public boolean getCanSendIngressPass() {
 		return this.canSendIngressPass;
 	}
 
-	public void setCanSendIngressPass(byte canSendIngressPass) {
+	public void setCanSendIngressPass(boolean canSendIngressPass) {
 		this.canSendIngressPass = canSendIngressPass;
 	}
 
-	public byte getCanSendSms() {
+	public boolean getCanSendSms() {
 		return this.canSendSms;
 	}
 
-	public void setCanSendSms(byte canSendSms) {
+	public void setCanSendSms(boolean canSendSms) {
 		this.canSendSms = canSendSms;
 	}
 
-	public byte getCanSendWhatsapp() {
+	public boolean getCanSendWhatsapp() {
 		return this.canSendWhatsapp;
 	}
 
-	public void setCanSendWhatsapp(byte canSendWhatsapp) {
+	public void setCanSendWhatsapp(boolean canSendWhatsapp) {
 		this.canSendWhatsapp = canSendWhatsapp;
 	}
 
@@ -212,11 +217,11 @@ public class Event implements Serializable {
 		this.rescheduleDate = rescheduleDate;
 	}
 
-	public byte getStatus() {
+	public boolean getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
