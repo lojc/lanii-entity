@@ -1,8 +1,11 @@
 package mx.com.lanii.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 
 /**
@@ -15,7 +18,10 @@ public class Notification implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(columnDefinition = "BINARY(16)")
+	private UUID id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
@@ -37,11 +43,11 @@ public class Notification implements Serializable {
 	public Notification() {
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

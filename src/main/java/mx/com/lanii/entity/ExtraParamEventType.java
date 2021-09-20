@@ -1,8 +1,11 @@
 package mx.com.lanii.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -16,7 +19,10 @@ public class ExtraParamEventType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(columnDefinition = "BINARY(16)")
+	private UUID id;
 
 	//bi-directional many-to-one association to EventExtraParamEventType
 	@OneToMany(mappedBy="extraParamEventType")
@@ -35,11 +41,11 @@ public class ExtraParamEventType implements Serializable {
 	public ExtraParamEventType() {
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

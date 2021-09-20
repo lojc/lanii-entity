@@ -4,8 +4,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -21,7 +23,7 @@ public class Event implements Serializable {
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Column(columnDefinition = "BINARY(16)")
-	private String id;
+	private UUID id;
 
 	private String address;
 
@@ -37,20 +39,16 @@ public class Event implements Serializable {
 	@Column(name="can_send_whatsapp")
 	private boolean canSendWhatsapp;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	private LocalDateTime date;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_finished")
-	private Date dateFinished;
+	private LocalDateTime dateFinished;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_start")
-	private Date dateStart;
+	private LocalDateTime dateStart;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_started")
-	private Date dateStarted;
+	private LocalDateTime dateStarted;
 
 	private double duration;
 
@@ -63,9 +61,8 @@ public class Event implements Serializable {
 	@Column(name="location_name")
 	private String locationName;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="reschedule_date")
-	private Date rescheduleDate;
+	private LocalDateTime rescheduleDate;
 
 	private boolean status;
 
@@ -97,11 +94,11 @@ public class Event implements Serializable {
 	public Event() {
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -145,35 +142,35 @@ public class Event implements Serializable {
 		this.canSendWhatsapp = canSendWhatsapp;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
-	public Date getDateFinished() {
+	public LocalDateTime getDateFinished() {
 		return this.dateFinished;
 	}
 
-	public void setDateFinished(Date dateFinished) {
+	public void setDateFinished(LocalDateTime dateFinished) {
 		this.dateFinished = dateFinished;
 	}
 
-	public Date getDateStart() {
+	public LocalDateTime getDateStart() {
 		return this.dateStart;
 	}
 
-	public void setDateStart(Date dateStart) {
+	public void setDateStart(LocalDateTime dateStart) {
 		this.dateStart = dateStart;
 	}
 
-	public Date getDateStarted() {
+	public LocalDateTime getDateStarted() {
 		return this.dateStarted;
 	}
 
-	public void setDateStarted(Date dateStarted) {
+	public void setDateStarted(LocalDateTime dateStarted) {
 		this.dateStarted = dateStarted;
 	}
 
@@ -209,11 +206,11 @@ public class Event implements Serializable {
 		this.locationName = locationName;
 	}
 
-	public Date getRescheduleDate() {
+	public LocalDateTime getRescheduleDate() {
 		return this.rescheduleDate;
 	}
 
-	public void setRescheduleDate(Date rescheduleDate) {
+	public void setRescheduleDate(LocalDateTime rescheduleDate) {
 		this.rescheduleDate = rescheduleDate;
 	}
 

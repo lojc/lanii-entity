@@ -1,8 +1,11 @@
 package mx.com.lanii.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -16,7 +19,10 @@ public class CommunicationType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(columnDefinition = "BINARY(16)")
+	private UUID id;
 
 	private String code;
 
@@ -33,11 +39,11 @@ public class CommunicationType implements Serializable {
 	public CommunicationType() {
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
