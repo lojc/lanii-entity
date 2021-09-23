@@ -31,11 +31,6 @@ public class InvitationRange implements Serializable {
 
 	private int to;
 
-	//bi-directional many-to-one association to CommunicationType
-	@ManyToOne
-	@JoinColumn(name="communication_type_id")
-	private CommunicationType communicationType;
-
 	//bi-directional many-to-one association to EventType
 	@ManyToOne
 	@JoinColumn(name="event_type_id")
@@ -82,14 +77,6 @@ public class InvitationRange implements Serializable {
 
 	public void setTo(int to) {
 		this.to = to;
-	}
-
-	public CommunicationType getCommunicationType() {
-		return this.communicationType;
-	}
-
-	public void setCommunicationType(CommunicationType communicationType) {
-		this.communicationType = communicationType;
 	}
 
 	public EventType getEventType() {

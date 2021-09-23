@@ -28,10 +28,6 @@ public class CommunicationType implements Serializable {
 
 	private String name;
 
-	//bi-directional many-to-one association to InvitationRange
-	@OneToMany(mappedBy="communicationType")
-	private List<InvitationRange> invitationRanges;
-
 	//bi-directional many-to-one association to Notification
 	@OneToMany(mappedBy="communicationType")
 	private List<Notification> notifications;
@@ -61,28 +57,6 @@ public class CommunicationType implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<InvitationRange> getInvitationRanges() {
-		return this.invitationRanges;
-	}
-
-	public void setInvitationRanges(List<InvitationRange> invitationRanges) {
-		this.invitationRanges = invitationRanges;
-	}
-
-	public InvitationRange addInvitationRange(InvitationRange invitationRange) {
-		getInvitationRanges().add(invitationRange);
-		invitationRange.setCommunicationType(this);
-
-		return invitationRange;
-	}
-
-	public InvitationRange removeInvitationRange(InvitationRange invitationRange) {
-		getInvitationRanges().remove(invitationRange);
-		invitationRange.setCommunicationType(null);
-
-		return invitationRange;
 	}
 
 	public List<Notification> getNotifications() {

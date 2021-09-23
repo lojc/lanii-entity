@@ -37,7 +37,7 @@ public class EventType implements Serializable {
 	private List<ExtraParamEventType> extraParamEventTypes;
 
 	//bi-directional many-to-one association to InvitationRange
-	@OneToMany(mappedBy="eventType")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="eventType")
 	private List<InvitationRange> invitationRanges;
 
 	public EventType() {
