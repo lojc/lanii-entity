@@ -27,17 +27,8 @@ public class Event implements Serializable {
 
 	private String address;
 
-	@Column(name="can_send_email")
-	private boolean canSendEmail;
-
 	@Column(name="can_send_ingress_pass")
 	private boolean canSendIngressPass;
-
-	@Column(name="can_send_sms")
-	private boolean canSendSms;
-
-	@Column(name="can_send_whatsapp")
-	private boolean canSendWhatsapp;
 
 	private LocalDateTime date;
 
@@ -91,6 +82,10 @@ public class Event implements Serializable {
 	@OneToMany(mappedBy="event")
 	private List<Invitation> invitations;
 
+	//bi-directional many-to-one association to InvitationPurchase
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="event", cascade={CascadeType.ALL})
+	private List<InvitationPurchase> invitationPurchases;
+
 	public Event() {
 	}
 
@@ -110,36 +105,12 @@ public class Event implements Serializable {
 		this.address = address;
 	}
 
-	public boolean getCanSendEmail() {
-		return this.canSendEmail;
-	}
-
-	public void setCanSendEmail(boolean canSendEmail) {
-		this.canSendEmail = canSendEmail;
-	}
-
 	public boolean getCanSendIngressPass() {
 		return this.canSendIngressPass;
 	}
 
 	public void setCanSendIngressPass(boolean canSendIngressPass) {
 		this.canSendIngressPass = canSendIngressPass;
-	}
-
-	public boolean getCanSendSms() {
-		return this.canSendSms;
-	}
-
-	public void setCanSendSms(boolean canSendSms) {
-		this.canSendSms = canSendSms;
-	}
-
-	public boolean getCanSendWhatsapp() {
-		return this.canSendWhatsapp;
-	}
-
-	public void setCanSendWhatsapp(boolean canSendWhatsapp) {
-		this.canSendWhatsapp = canSendWhatsapp;
 	}
 
 	public LocalDateTime getDate() {
@@ -290,6 +261,28 @@ public class Event implements Serializable {
 		invitation.setEvent(null);
 
 		return invitation;
+	}
+
+	public List<InvitationPurchase> getInvitationPurchases() {
+		return this.invitationPurchases;
+	}
+
+	public void setInvitationPurchases(List<InvitationPurchase> invitationPurchases) {
+		this.invitationPurchases = invitationPurchases;
+	}
+
+	public InvitationPurchase addInvitationPurchase(InvitationPurchase invitationPurchase) {
+		getInvitationPurchases().add(invitationPurchase);
+		invitationPurchase.setEvent(this);
+
+		return invitationPurchase;
+	}
+
+	public InvitationPurchase removeInvitationPurchase(InvitationPurchase invitationPurchase) {
+		getInvitationPurchases().remove(invitationPurchase);
+		invitationPurchase.setEvent(null);
+
+		return invitationPurchase;
 	}
 
 }

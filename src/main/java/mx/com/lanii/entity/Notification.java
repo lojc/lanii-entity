@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -23,8 +24,7 @@ public class Notification implements Serializable {
 	@Column(columnDefinition = "BINARY(16)")
 	private UUID id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	private LocalDateTime date;
 
 	//bi-directional many-to-one association to CommunicationType
 	@ManyToOne
@@ -51,11 +51,11 @@ public class Notification implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
