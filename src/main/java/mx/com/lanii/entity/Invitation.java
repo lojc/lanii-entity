@@ -2,8 +2,9 @@ package mx.com.lanii.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -24,9 +25,11 @@ public class Invitation implements Serializable {
 	@Column(columnDefinition = "BINARY(16)")
 	private UUID id;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="ingress_date")
-	private Date ingressDate;
+	private LocalDateTime ingressDate;
+
+	@Column(name="rsvp_date")
+	private LocalDateTime rsvpDate;
 
 	@Column(name="people_amount")
 	private int peopleAmount;
@@ -54,12 +57,20 @@ public class Invitation implements Serializable {
 		this.id = id;
 	}
 
-	public Date getIngressDate() {
+	public LocalDateTime getIngressDate() {
 		return this.ingressDate;
 	}
 
-	public void setIngressDate(Date ingressDate) {
+	public void setIngressDate(LocalDateTime ingressDate) {
 		this.ingressDate = ingressDate;
+	}
+
+	public LocalDateTime getrsvpDate() {
+		return this.rsvpDate;
+	}
+
+	public void setRsvpDate(LocalDateTime rsvpDate) {
+		this.rsvpDate = rsvpDate;
 	}
 
 	public int getPeopleAmount() {

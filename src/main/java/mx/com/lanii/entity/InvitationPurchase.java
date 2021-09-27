@@ -35,6 +35,11 @@ public class InvitationPurchase implements Serializable {
 
 	private double cost;
 
+	//bi-directional many-to-one association to InvitationRange
+	@ManyToOne
+	@JoinColumn(name="invitation_range_id")
+	private InvitationRange invitationRange;
+
 	public InvitationPurchase() {
 	}
 
@@ -76,6 +81,14 @@ public class InvitationPurchase implements Serializable {
 
 	public void setEvent(Event event) {
 		this.event = event;
+	}
+
+	public InvitationRange getInvitationRange() {
+		return this.invitationRange;
+	}
+
+	public void setInvitationRange(InvitationRange invitationRange) {
+		this.invitationRange = invitationRange;
 	}
 
 }

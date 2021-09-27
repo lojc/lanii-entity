@@ -30,6 +30,9 @@ public class Event implements Serializable {
 	@Column(name="can_send_ingress_pass")
 	private boolean canSendIngressPass;
 
+	@Column(name="can_rsvp")
+	private boolean canRsvp;
+
 	private LocalDateTime date;
 
 	@Column(name="date_finished")
@@ -111,6 +114,14 @@ public class Event implements Serializable {
 
 	public void setCanSendIngressPass(boolean canSendIngressPass) {
 		this.canSendIngressPass = canSendIngressPass;
+	}
+
+	public boolean getCanRsvp() {
+		return this.canRsvp;
+	}
+
+	public void setCanRsvp(boolean canRsvp) {
+		this.canRsvp = canRsvp;
 	}
 
 	public LocalDateTime getDate() {

@@ -3,6 +3,7 @@ package mx.com.lanii.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.*;
 
@@ -35,6 +36,10 @@ public class InvitationRange implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="event_type_id")
 	private EventType eventType;
+
+	//bi-directional many-to-one association to InvitationPurchase
+	@OneToMany(mappedBy="invitationRange")
+	private List<InvitationPurchase> invitationPurchases;
 
 	public InvitationRange() {
 	}
@@ -85,6 +90,28 @@ public class InvitationRange implements Serializable {
 
 	public void setEventType(EventType eventType) {
 		this.eventType = eventType;
+	}
+
+	public List<InvitationPurchase> getInvitationPurchases() {
+		return this.invitationPurchases;
+	}
+
+	public void setInvitationPurchases(List<InvitationPurchase> invitationPurchases) {
+		this.invitationPurchases = invitationPurchases;
+	}
+
+	public InvitationPurchase addInvitationPurchases(InvitationPurchase invitationPurchases) {
+		getInvitationPurchases().add(invitationPurchases);
+		invitationPurchases.setInvitationRange(this);
+
+		return invitationPurchases;
+	}
+
+	public InvitationPurchase removeInvitationPurchases(InvitationPurchase invitationPurchases) {
+		getInvitationPurchases().remove(invitationPurchases);
+		invitationPurchases.setInvitationRange(null);
+
+		return invitationPurchases;
 	}
 
 }
