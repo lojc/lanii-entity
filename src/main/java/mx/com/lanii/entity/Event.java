@@ -82,7 +82,7 @@ public class Event implements Serializable {
 	private EventExtraParamEventType eventExtraParamEventType;
 
 	//bi-directional many-to-one association to Invitation
-	@OneToMany(mappedBy="event")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="event", cascade={CascadeType.ALL})
 	private List<Invitation> invitations;
 
 	//bi-directional many-to-one association to InvitationPurchase

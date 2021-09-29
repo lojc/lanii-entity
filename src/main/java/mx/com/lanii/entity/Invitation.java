@@ -31,8 +31,13 @@ public class Invitation implements Serializable {
 	@Column(name="rsvp_date")
 	private LocalDateTime rsvpDate;
 
+	@Column(name="deny_date")
+	private LocalDateTime denyDate;
+
 	@Column(name="people_amount")
 	private int peopleAmount;
+
+	private boolean status;
 
 	//bi-directional many-to-one association to Contact
 	@ManyToOne
@@ -43,7 +48,7 @@ public class Invitation implements Serializable {
 	private Event event;
 
 	//bi-directional many-to-one association to Notification
-	@OneToMany(mappedBy="invitation")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="invitation", cascade={CascadeType.ALL})
 	private List<Notification> notifications;
 
 	public Invitation() {
@@ -65,12 +70,28 @@ public class Invitation implements Serializable {
 		this.ingressDate = ingressDate;
 	}
 
-	public LocalDateTime getrsvpDate() {
+	public LocalDateTime getRsvpDate() {
 		return this.rsvpDate;
 	}
 
 	public void setRsvpDate(LocalDateTime rsvpDate) {
 		this.rsvpDate = rsvpDate;
+	}
+
+	public LocalDateTime getDenyDate() {
+		return this.denyDate;
+	}
+
+	public void setDenyDate(LocalDateTime denyDate) {
+		this.denyDate = denyDate;
+	}
+
+	public boolean getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public int getPeopleAmount() {
