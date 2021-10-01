@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class InvitationPurchase implements Serializable {
 	@Column(columnDefinition = "BINARY(16)")
 	private UUID id;
 
-	private double amount;
+	private int amount;
 
 	private LocalDateTime date;
 
@@ -33,7 +34,7 @@ public class InvitationPurchase implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
 	private Event event;
 
-	private double cost;
+	private BigDecimal cost;
 
 	//bi-directional many-to-one association to InvitationRange
 	@ManyToOne
@@ -51,19 +52,19 @@ public class InvitationPurchase implements Serializable {
 		this.id = id;
 	}
 
-	public double getAmount() {
+	public int getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
-	public double getCost() {
+	public BigDecimal getCost() {
 		return this.cost;
 	}
 
-	public void setCost(double cost) {
+	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
 

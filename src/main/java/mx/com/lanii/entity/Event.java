@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -58,12 +59,15 @@ public class Event implements Serializable {
 	@Column(name="reschedule_date")
 	private LocalDateTime rescheduleDate;
 
-	private boolean status;
+	//bi-directional many-to-one association to EventStatus
+	@ManyToOne
+	@JoinColumn(name="event_status_id")
+	private EventStatus eventStatus;
 
 	private String title;
 
 	@Column(name="total_cost")
-	private double totalCost;
+	private BigDecimal totalCost;
 
 	@Column(name="user_id")
 	private String userId;
@@ -196,12 +200,12 @@ public class Event implements Serializable {
 		this.rescheduleDate = rescheduleDate;
 	}
 
-	public boolean getStatus() {
-		return this.status;
+	public EventStatus getEventStatus() {
+		return this.eventStatus;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setEventStatus(EventStatus eventStatus) {
+		this.eventStatus = eventStatus;
 	}
 
 	public String getTitle() {
@@ -212,11 +216,11 @@ public class Event implements Serializable {
 		this.title = title;
 	}
 
-	public double getTotalCost() {
+	public BigDecimal getTotalCost() {
 		return this.totalCost;
 	}
 
-	public void setTotalCost(double totalCost) {
+	public void setTotalCost(BigDecimal totalCost) {
 		this.totalCost = totalCost;
 	}
 

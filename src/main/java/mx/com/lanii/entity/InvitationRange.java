@@ -3,6 +3,7 @@ package mx.com.lanii.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.*;
@@ -26,7 +27,7 @@ public class InvitationRange implements Serializable {
 
 	private int from;
 
-	private double price;
+	private BigDecimal price;
 
 	private byte status;
 
@@ -60,11 +61,11 @@ public class InvitationRange implements Serializable {
 		this.from = from;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
