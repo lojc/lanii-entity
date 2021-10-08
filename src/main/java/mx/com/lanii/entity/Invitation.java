@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -47,9 +48,11 @@ public class Invitation implements Serializable {
 	@ManyToOne
 	private Event event;
 
+	private UUID code;
+
 	//bi-directional many-to-one association to Notification
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="invitation", cascade={CascadeType.ALL})
-	private List<Notification> notifications;
+	private List<Notification> notifications = new ArrayList<>();
 
 	public Invitation() {
 	}
@@ -116,6 +119,14 @@ public class Invitation implements Serializable {
 
 	public void setEvent(Event event) {
 		this.event = event;
+	}
+
+	public UUID getCode() {
+		return this.code;
+	}
+
+	public void setCode(UUID code) {
+		this.code = code;
 	}
 
 	public List<Notification> getNotifications() {

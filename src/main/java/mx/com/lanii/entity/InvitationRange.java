@@ -29,7 +29,7 @@ public class InvitationRange implements Serializable {
 
 	private BigDecimal price;
 
-	private byte status;
+	private boolean status;
 
 	private int to;
 
@@ -69,11 +69,11 @@ public class InvitationRange implements Serializable {
 		this.price = price;
 	}
 
-	public byte getStatus() {
+	public boolean getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

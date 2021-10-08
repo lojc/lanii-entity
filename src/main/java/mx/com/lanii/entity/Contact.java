@@ -30,7 +30,7 @@ public class Contact implements Serializable {
 	@Column(name="phone_number")
 	private String phoneNumber;
 
-	private byte status;
+	private boolean status;
 
 	@Column(name="user_id")
 	private String userId;
@@ -74,11 +74,11 @@ public class Contact implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public byte getStatus() {
+	public boolean getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

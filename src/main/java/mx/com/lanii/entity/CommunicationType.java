@@ -28,6 +28,8 @@ public class CommunicationType implements Serializable {
 
 	private String name;
 
+	private boolean free;
+
 	//bi-directional many-to-one association to Notification
 	@OneToMany(mappedBy="communicationType")
 	private List<Notification> notifications;
@@ -57,6 +59,14 @@ public class CommunicationType implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean getFree() {
+		return this.free;
+	}
+
+	public void setFree(boolean free) {
+		this.free = free;
 	}
 
 	public List<Notification> getNotifications() {
