@@ -81,9 +81,9 @@ public class Event implements Serializable {
 	@ManyToOne
 	private Template template;
 
-	//bi-directional one-to-one association to EventExtraParamEventType
-	@OneToOne(mappedBy="event")
-	private EventExtraParamEventType eventExtraParamEventType;
+	//bi-directional many-to-one association to EventExtraParam
+	@OneToMany(mappedBy="event")
+	private List<EventExtraParam> eventExtraParams;
 
 	//bi-directional many-to-one association to Invitation
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="event", cascade={CascadeType.ALL})
@@ -248,12 +248,26 @@ public class Event implements Serializable {
 		this.template = template;
 	}
 
-	public EventExtraParamEventType getEventExtraParamEventType() {
-		return this.eventExtraParamEventType;
+	public List<EventExtraParam> getEventExtraParams() {
+		return this.eventExtraParams;
 	}
 
-	public void setEventExtraParamEventType(EventExtraParamEventType eventExtraParamEventType) {
-		this.eventExtraParamEventType = eventExtraParamEventType;
+	public void setEventExtraParams(List<EventExtraParam> eventExtraParams) {
+		this.eventExtraParams = eventExtraParams;
+	}
+
+	public EventExtraParam addEventExtraParam(EventExtraParam eventExtraParam) {
+		getEventExtraParams().add(eventExtraParam);
+		eventExtraParam.setEvent(this);
+
+		return eventExtraParam;
+	}
+
+	public EventExtraParam removeEventExtraParam(EventExtraParam eventExtraParam) {
+		getEventExtraParams().remove(eventExtraParam);
+		eventExtraParam.setEvent(null);
+
+		return eventExtraParam;
 	}
 
 	public List<Invitation> getInvitations() {

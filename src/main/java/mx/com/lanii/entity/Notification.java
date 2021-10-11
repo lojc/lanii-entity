@@ -26,6 +26,8 @@ public class Notification implements Serializable {
 
 	private LocalDateTime date;
 
+	private LocalDateTime dateSent;
+
 	//bi-directional many-to-one association to CommunicationType
 	@ManyToOne
 	@JoinColumn(name="communication_type_id")
@@ -57,6 +59,14 @@ public class Notification implements Serializable {
 
 	public void setDate(LocalDateTime date) {
 		this.date = date;
+	}
+
+	public LocalDateTime getDateSent() {
+		return this.dateSent;
+	}
+
+	public void setDateSent(LocalDateTime dateSent) {
+		this.dateSent = dateSent;
 	}
 
 	public CommunicationType getCommunicationType() {

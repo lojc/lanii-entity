@@ -2,20 +2,18 @@ package mx.com.lanii.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
 import java.util.UUID;
 
-
 /**
- * The persistent class for the extra_param_event_type database table.
- * 
+ * The persistent class for the event_extra_param database table.
+ *
  */
 @Entity
-@Table(name="extra_param_event_type")
-@NamedQuery(name="ExtraParamEventType.findAll", query="SELECT e FROM ExtraParamEventType e")
-public class ExtraParamEventType implements Serializable {
+@Table(name="event_extra_param")
+@NamedQuery(name="EventExtraParam.findAll", query="SELECT e FROM EventExtraParam e")
+public class EventExtraParam implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -24,17 +22,18 @@ public class ExtraParamEventType implements Serializable {
 	@Column(columnDefinition = "BINARY(16)")
 	private UUID id;
 
-	//bi-directional many-to-one association to EventType
+	private String name;
+
+	//bi-directional many-to-one association to Event
 	@ManyToOne
-	@JoinColumn(name="event_type_id")
-	private EventType eventType;
+	private Event event;
 
 	//bi-directional many-to-one association to ExtraParam
 	@ManyToOne
 	@JoinColumn(name="extra_param_id")
 	private ExtraParam extraParam;
 
-	public ExtraParamEventType() {
+	public EventExtraParam() {
 	}
 
 	public UUID getId() {
@@ -45,12 +44,20 @@ public class ExtraParamEventType implements Serializable {
 		this.id = id;
 	}
 
-	public EventType getEventType() {
-		return this.eventType;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setEventType(EventType eventType) {
-		this.eventType = eventType;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Event getEvent() {
+		return this.event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 	public ExtraParam getExtraParam() {

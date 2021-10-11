@@ -28,6 +28,10 @@ public class ExtraParam implements Serializable {
 
 	private String name;
 
+	//bi-directional many-to-one association to EventExtraParam
+	@OneToMany(mappedBy="extraParam")
+	private List<EventExtraParam> eventExtraParams;
+
 	//bi-directional many-to-one association to ExtraParamEventType
 	@OneToMany(mappedBy="extraParam")
 	private List<ExtraParamEventType> extraParamEventTypes;
@@ -57,6 +61,28 @@ public class ExtraParam implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<EventExtraParam> getEventExtraParams() {
+		return this.eventExtraParams;
+	}
+
+	public void setEventExtraParams(List<EventExtraParam> eventExtraParams) {
+		this.eventExtraParams = eventExtraParams;
+	}
+
+	public EventExtraParam addEventExtraParam(EventExtraParam eventExtraParam) {
+		getEventExtraParams().add(eventExtraParam);
+		eventExtraParam.setExtraParam(this);
+
+		return eventExtraParam;
+	}
+
+	public EventExtraParam removeEventExtraParam(EventExtraParam eventExtraParam) {
+		getEventExtraParams().remove(eventExtraParam);
+		eventExtraParam.setExtraParam(null);
+
+		return eventExtraParam;
 	}
 
 	public List<ExtraParamEventType> getExtraParamEventTypes() {
