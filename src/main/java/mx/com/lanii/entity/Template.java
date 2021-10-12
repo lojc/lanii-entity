@@ -29,6 +29,15 @@ public class Template implements Serializable {
 	@OneToMany(mappedBy="template")
 	private List<Event> events;
 
+	//bi-directional many-to-one association to EventType
+	@ManyToOne
+	@JoinColumn(name="event_type_id")
+	private EventType eventType;
+
+	//bi-directional many-to-one association to TemplateExtraParam
+	@OneToMany(mappedBy="template")
+	private List<TemplateExtraParam> templateExtraParams;
+
 	public Template() {
 	}
 
@@ -68,6 +77,36 @@ public class Template implements Serializable {
 		event.setTemplate(null);
 
 		return event;
+	}
+
+	public EventType getEventType() {
+		return this.eventType;
+	}
+
+	public void setEventType(EventType eventType) {
+		this.eventType = eventType;
+	}
+
+	public List<TemplateExtraParam> getTemplateExtraParams() {
+		return this.templateExtraParams;
+	}
+
+	public void setTemplateExtraParams(List<TemplateExtraParam> templateExtraParams) {
+		this.templateExtraParams = templateExtraParams;
+	}
+
+	public TemplateExtraParam addTemplateExtraParam(TemplateExtraParam templateExtraParam) {
+		getTemplateExtraParams().add(templateExtraParam);
+		templateExtraParam.setTemplate(this);
+
+		return templateExtraParam;
+	}
+
+	public TemplateExtraParam removeTemplateExtraParam(TemplateExtraParam templateExtraParam) {
+		getTemplateExtraParams().remove(templateExtraParam);
+		templateExtraParam.setTemplate(null);
+
+		return templateExtraParam;
 	}
 
 }

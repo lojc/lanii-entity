@@ -32,13 +32,13 @@ public class EventType implements Serializable {
 	@OneToMany(mappedBy="eventType")
 	private List<Event> events;
 
-	//bi-directional many-to-one association to ExtraParamEventType
-	@OneToMany(mappedBy="eventType")
-	private List<ExtraParamEventType> extraParamEventTypes;
-
 	//bi-directional many-to-one association to InvitationRange
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="eventType")
+	@OneToMany(mappedBy="eventType")
 	private List<InvitationRange> invitationRanges;
+
+	//bi-directional many-to-one association to Template
+	@OneToMany(mappedBy="eventType")
+	private List<Template> templates;
 
 	public EventType() {
 	}
@@ -89,28 +89,6 @@ public class EventType implements Serializable {
 		return event;
 	}
 
-	public List<ExtraParamEventType> getExtraParamEventTypes() {
-		return this.extraParamEventTypes;
-	}
-
-	public void setExtraParamEventTypes(List<ExtraParamEventType> extraParamEventTypes) {
-		this.extraParamEventTypes = extraParamEventTypes;
-	}
-
-	public ExtraParamEventType addExtraParamEventType(ExtraParamEventType extraParamEventType) {
-		getExtraParamEventTypes().add(extraParamEventType);
-		extraParamEventType.setEventType(this);
-
-		return extraParamEventType;
-	}
-
-	public ExtraParamEventType removeExtraParamEventType(ExtraParamEventType extraParamEventType) {
-		getExtraParamEventTypes().remove(extraParamEventType);
-		extraParamEventType.setEventType(null);
-
-		return extraParamEventType;
-	}
-
 	public List<InvitationRange> getInvitationRanges() {
 		return this.invitationRanges;
 	}
@@ -131,6 +109,28 @@ public class EventType implements Serializable {
 		invitationRange.setEventType(null);
 
 		return invitationRange;
+	}
+
+	public List<Template> getTemplates() {
+		return this.templates;
+	}
+
+	public void setTemplates(List<Template> templates) {
+		this.templates = templates;
+	}
+
+	public Template addTemplate(Template template) {
+		getTemplates().add(template);
+		template.setEventType(this);
+
+		return template;
+	}
+
+	public Template removeTemplate(Template template) {
+		getTemplates().remove(template);
+		template.setEventType(null);
+
+		return template;
 	}
 
 }

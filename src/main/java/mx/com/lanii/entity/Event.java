@@ -2,11 +2,10 @@ package mx.com.lanii.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -82,7 +81,7 @@ public class Event implements Serializable {
 	private Template template;
 
 	//bi-directional many-to-one association to EventExtraParam
-	@OneToMany(mappedBy="event")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="event", cascade={CascadeType.ALL})
 	private List<EventExtraParam> eventExtraParams;
 
 	//bi-directional many-to-one association to Invitation

@@ -32,9 +32,9 @@ public class ExtraParam implements Serializable {
 	@OneToMany(mappedBy="extraParam")
 	private List<EventExtraParam> eventExtraParams;
 
-	//bi-directional many-to-one association to ExtraParamEventType
+	//bi-directional many-to-one association to TemplateExtraParam
 	@OneToMany(mappedBy="extraParam")
-	private List<ExtraParamEventType> extraParamEventTypes;
+	private List<TemplateExtraParam> templateExtraParams;
 
 	public ExtraParam() {
 	}
@@ -85,26 +85,26 @@ public class ExtraParam implements Serializable {
 		return eventExtraParam;
 	}
 
-	public List<ExtraParamEventType> getExtraParamEventTypes() {
-		return this.extraParamEventTypes;
+	public List<TemplateExtraParam> getTemplateExtraParams() {
+		return this.templateExtraParams;
 	}
 
-	public void setExtraParamEventTypes(List<ExtraParamEventType> extraParamEventTypes) {
-		this.extraParamEventTypes = extraParamEventTypes;
+	public void setTemplateExtraParams(List<TemplateExtraParam> templateExtraParams) {
+		this.templateExtraParams = templateExtraParams;
 	}
 
-	public ExtraParamEventType addExtraParamEventType(ExtraParamEventType extraParamEventType) {
-		getExtraParamEventTypes().add(extraParamEventType);
-		extraParamEventType.setExtraParam(this);
+	public TemplateExtraParam addTemplateExtraParam(TemplateExtraParam templateExtraParam) {
+		getTemplateExtraParams().add(templateExtraParam);
+		templateExtraParam.setExtraParam(this);
 
-		return extraParamEventType;
+		return templateExtraParam;
 	}
 
-	public ExtraParamEventType removeExtraParamEventType(ExtraParamEventType extraParamEventType) {
-		getExtraParamEventTypes().remove(extraParamEventType);
-		extraParamEventType.setExtraParam(null);
+	public TemplateExtraParam removeTemplateExtraParam(TemplateExtraParam templateExtraParam) {
+		getTemplateExtraParams().remove(templateExtraParam);
+		templateExtraParam.setExtraParam(null);
 
-		return extraParamEventType;
+		return templateExtraParam;
 	}
 
 }
