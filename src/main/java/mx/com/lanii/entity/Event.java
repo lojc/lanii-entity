@@ -81,7 +81,7 @@ public class Event implements Serializable {
 	private Template template;
 
 	//bi-directional many-to-one association to EventExtraParam
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="event", cascade={CascadeType.ALL})
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="event", cascade={CascadeType.ALL}, orphanRemoval = true)
 	private List<EventExtraParam> eventExtraParams;
 
 	//bi-directional many-to-one association to Invitation
